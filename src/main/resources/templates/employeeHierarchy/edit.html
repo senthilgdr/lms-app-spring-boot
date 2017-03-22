@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Update EmployeeHierarchy</title>
+
+</head>
+<body>
+<div th:include="layout/header"></div>
+	<div id="msg"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>Update EmployeeHierarchy</h4>
+					</div>
+				</div>
+				<div class="portlet-body" th:with="empHierarchy=${EDIT_EMPLOYEE_HIERARCHY}">
+				
+					<form id="updateEmployeeHierarchyFrm" class="form-horizontal"
+						role="form" method="GET" action="../employeesHierarchy/update">
+						<input type="hidden" name="id" th:value="${empHierarchy.id}"/>
+						<div class="form-group">
+							<label for="employeeName">Employee Name:</label><input type="text"
+								class="form-control" th:value="${empHierarchy.employee.name}" name="empId"
+								readonly="readonly" required="required" autofocus="autofocus" id="employeeName"/>
+						</div>
+
+						<div class="form-group">
+							<label for="managerName">Manager Name:</label><input type="text"
+								class="form-control" th:value="${empHierarchy.manager.name}" name="mgrId"
+								required="required" id="managerName"/>
+						</div>
+
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-success"
+								id="updateEmployeeHierarchyBtn">Update</button>
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>

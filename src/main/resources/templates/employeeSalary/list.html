@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>EmployeeSalary Details</title>
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-14">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>EmployeeSalary Details</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<thead>
+								<tr>
+									<th>EMPLOYEE NAME</th>
+									<th>BASIC PAY</th>
+									<th>HRA</th>
+									<th>CONVEYANCE</th>
+									<th>SPECIAL ALLOWANCE</th>
+									<th>MEDICAL INSURANCE</th>
+									<th>PROVIDENT FUND</th>
+									<th>INCOME TAX</th>
+																
+									
+								</tr>
+							</thead>
+							<tbody>	  			
+								
+									
+								<tr th:each="salarylist : ${EMPLOYEE_SALARY_LIST}">
+									<td th:text="${salarylist.employee.name}"></td>
+									<td th:text="${salarylist.basicPay}"></td>
+									<td th:text="${salarylist.hra}"></td>
+									<td th:text="${salarylist.conveyance}"></td>
+									<td th:text="${salarylist.specialAllowance}"></td>
+									<td th:text="${salarylist.medicalInsurance}"></td>
+									<td th:text="${salarylist.providentFund}"></td>
+									<td th:text="${salarylist.incomeTax}"></td>
+									
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+								
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

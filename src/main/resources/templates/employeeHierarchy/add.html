@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Assign Manage</title>
+
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div id="msg"></div>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-4">
+
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>Assign Manager</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<form id="addEmployeeHierarchyFrm" class="form-horizontal" role="form"
+						method="GET" action="../employeesHierarchy/save">
+
+						<div class="form-group">
+							<label for="employeeName">EmployeeName:</label><input type="text"
+								class="form-control" name="empId" required="required" autofocus="autofocus"
+								id="employeeName"/>
+						</div>
+
+						<div class="form-group">
+							<label for="managerName">ManagerName:</label><input type="text"
+								class="form-control" name="mgrId" required="required"
+								id="managerName"/>
+						</div>
+
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-success" id="addEmployeeHierarchyBtn">Submit</button>
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>

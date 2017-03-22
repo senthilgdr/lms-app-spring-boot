@@ -1,0 +1,107 @@
+
+<link rel="stylesheet"
+	href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+<link rel="stylesheet"
+	href="../assets/css/bootstrap_custom_nav_bar.css" />
+<link rel="stylesheet"
+	href="../assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+
+<script src="../assets/js/jquery.min.js" th:href="@{/assets/js/jquery.min.js}"></script>
+<script
+	src="../assets/js/bootstrap.min.js" th:href="@{/assets/js/bootstrap.min.js}"></script>
+
+<nav class="navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand"
+				href="index.html" th:href="@{/}" ><span
+				class="glyphicon glyphicon-home"> LeaveManagementSystem(LMS)</span></a>
+		</div>
+		
+		<ul class="nav navbar-nav">
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Leave <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="../leavedetails/create" th:href="@{/leavedetails/create}">ApplyLeave</a></li>
+					<li><a href="../leavedetails/list" th:href="@{/leavedetails/list}">My
+							Leaves </a></li>
+					<li><a href="../leaveroles/myLeaveRole" th:href="@{/leaveroles/myLeaveRole}">My
+							Leave Eligibility </a></li>
+							
+				</ul></li>
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">MyTeam <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="../leavedetails/teamPendingLeaves" th:href="@{/leavedetails/teamPendingLeaves}">MyTeam
+							LeaveDetails </a></li>
+					<li><a
+						href="../employeesHierarchy/list" th:href="@{/employeesHierarchy/listMyTeam}">MyTeam
+							Hierarchy</a>
+							</li>
+				</ul></li>
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a
+						href="../leavedetails/selectPendingLeave" th:href="@{/leavedetails/selectPendingLeave}">All
+							Leaves </a></li>
+					<li><a
+						href="../employees/list" th:href="@{/employees/list}" >All
+							Employees </a></li>
+					<li><a
+						href="../employeesHierarchy/list" th:href="@{/employeesHierarchy/list}">All
+							EmployeeHierarchy </a></li>
+							<li><a href="../employeesTax/list" th:href="@{/employeesTax/list}">All Employees Tax Details</a></li>
+				<li><a
+						href="../employeesSalary/list" th:href="@{/employeesSalary/list}">All
+							Employee Salary </a></li>
+				</ul></li>
+			
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">HR <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="../holidays/list" th:href="@{/holidays/list}">Holidays
+					</a></li>
+					<li><a href="../leaveroles/list" th:href="@{/leaveroles/list}">Leave
+							Role </a></li>
+
+				</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">TaxDeclaration <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+				<li><a href="../employeesTax/create" th:href="@{/employeesTax/create}">Apply Tax</a></li>
+				<li><a href="../employeesTax/myTaxlist" th:href="@{/employeesTax/myTaxlist}">My Tax Details</a></li>
+						</ul></li>		
+		</ul>
+
+		<div class="navbar-header pull-right">
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown" th:if="${session.LOGGED_IN_USER != null}">
+				<a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Welcome <span
+						class="glyphicon glyphicon-user" th:if="@{session.LOGGED_IN_USER !=null}" th:text="${session.LOGGED_IN_USER.name}" ></span>!!!
+				</a>
+
+					<ul class="dropdown-menu">
+					<li><a href="../employees/MyProfile" th:href="@{/employees/myProfile}">My Profile </a></li>
+					<li><a href="../employeesSalary/mySalary" th:href="@{/employeesSalary/mySalary}">My Salary </a></li>
+						<li><a href="../employees/Logout" th:href="@{/employees/Logout}">Sign
+								Out ! </a></li>
+						<li><a href="../employees/changepassword" th:href="@{/employees/changepassword}">Change Password ! </a></li>
+					</ul></li>
+			</ul>
+		
+
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<!-- <jsp:include page="errorPage.jsp"></jsp:include> -->
+	</div>
+</div>

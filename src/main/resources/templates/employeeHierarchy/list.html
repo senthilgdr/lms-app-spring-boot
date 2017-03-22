@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>EmployeeHierarchy</title>
+</head>
+<body>
+		<div th:include="layout/header"></div>
+	<div class="container">		
+
+		<div class="row">
+			<div class="col-md-14">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>EmployeeHierarchy</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<thead>
+								<tr>
+									<th>S.NO</th>
+									<th>EMPLOYEE NAME</th>
+									<th>MANAGER NAME</th>
+																
+									
+								</tr>
+							</thead>
+							<tbody>								
+															
+								<tr th:each="hierarchy : EMPLOYEE_HIERARCHY_LIST">
+									<td th:text="${hierarchy.employee.name}"></td>
+									<td th:text="${hierarchy.manager.name}"></td>
+
+									<td><a class='btn btn-success'  href=""
+										th:href="@{/employeesHierarchy/edit(id=${hierarchy.id})}"><span
+											class='icon-pencil'></span>Edit</a></td>
+									<td><a class='btn btn-danger'  href=""
+										th:href="@{/employeesHierarchy/delete(id=${hierarchy.id})}"><span
+											class='icon-pencil'></span>Delete</a></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+				<div class="row">
+					<a class='btn btn-success'  href="" th:href="@{/employeesHierarchy/create}">Add</a>
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

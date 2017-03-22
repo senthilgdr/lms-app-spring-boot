@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Employees Tax Details</title>
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-14">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>Employees Tax Details</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<thead>
+								<tr>
+									<th>NAME</th>
+									<th>EMP ID</th>
+									<th>PAN NUMBER</th>
+									<th>HOUSERENT</th>
+									<th>HOUSE OWNER NAME</th>
+									<th>MEDICAL BILLS</th>
+									
+									<th>EPF VPF CONTRIBUTION</th>
+									<th>PPF</th>									
+									<th>SCSS</th>								
+									<th>N.S.C</th>
+									<th>TAX SAVING FD</th>
+									
+									<th>TAX SAVING BONDS</th>
+									<th>E.L.S.S</th>
+									<th>LIFE INSURANCE</th>									
+									<th>PENSION PLAN</th>									
+									<th>CENTRAL GOVT.PLAN</th>
+									
+									<th>HOUSING LOAN</th>
+									<th>SUKANYA ACCOUNT</th>
+									<th>STAMP CHARGES:</th>
+									<th>TUITION FEES</th>
+									<th>ADDITIONAL DEDUCTION</th>
+									
+									<th>DEDUCTION RGESS</th>
+									<th>MEDICAL INSURANCE SELF</th>
+									<th>MEDICAL INSURANCE PARENT</th>
+									<th>EDUCATION LOAN</th>
+									<th>MEDICAL TREATMENT</th>
+									
+									<th>EXPENDITURE MEDICAL TREATMENT</th>
+									<th>DONATION APPROVED FUNDS</th>
+									<th>PHYSICALLY DISABLED</th>
+
+
+								</tr>
+							</thead>
+							<tbody>
+							
+								<tr th:each="taxlist : ${EMPLOYEE_TAX_LIST}">
+									<td th:text="${taxlist.employee.name}"></td>
+									<td th:text="${taxlist.panNo}"></td>
+									<td th:text="${taxlist.houseRent}"></td>
+									<td th:text="${taxlist.houseOwnerName}"></td>
+									<td th:text="${taxlist.medicalBills}"></td>
+
+									<td th:text="${taxlist.epfvpfContribution}"></td>
+									<td th:text="${taxlist.ppf}"></td>
+									<td th:text="${taxlist.scss}"></td>
+									<td th:text="${taxlist.nsc}"></td>
+									<td th:text="${taxlist.taxSavingFD}"></td>
+
+									<td th:text="${taxlist.taxSavingBonds}"></td>
+									<td th:text="${taxlist.taxSavingMutualFund}"></td>
+									<td th:text="${taxlist.lifeInsurancePremiums}"></td>
+									<td th:text="${taxlist.pensionPlan}"></td>
+									<td th:text="${taxlist.centralGovtPlan}"></td>
+
+									<td th:text="${taxlist.housingLoan}"></td>
+									<td th:text="${taxlist.sukanyaSamriddhiAccount}"></td>
+									<td th:text="${taxlist.stampDutyCharges}"></td>
+									<td th:text="${taxlist.tuitionFees}"></td>
+									<td th:text="${taxlist.additionalDeduction}"></td>
+
+									<td th:text="${taxlist.deductionRgess}"></td>
+									<td th:text="${taxlist.medicalInsuranceSelf}"></td>
+									<td th:text="${taxlist.medicalInsuranceParents}"></td>
+									<td th:text="${taxlist.educationLoan}"></td>
+									<td th:text="${taxlist.medicalTreatment}"></td>
+
+									<td th:text="${taxlist.expenditureMedicalTreatment}"></td>
+									<td th:text="${taxlist.donationApprovedFunds}"></td>
+									<td th:text="${taxlist.physicallyDisabled}"></td>
+</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

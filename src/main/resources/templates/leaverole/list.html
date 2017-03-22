@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Leave Role</title>
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md-14">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>My Leave Role</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div>
+						<table class="table">
+
+							<thead class="thead-inverse">
+								<tr>
+									<th>S.NO</th>
+									<th>ROLE</th>
+									<th>CASUAL LEAVE</th>
+									<th>SICK LEAVE</th>
+									<th>PAID LEAVE</th>
+									<th>MATERNITY LEAVE</th>
+									<th>PATERNITY LEAVE</th>
+									<th>PRIVILEGED LEAVE</th>
+									<th>CREATED DATE</th>
+									<th>MODIFIED DATE</th>
+									
+									
+								</tr>
+							</thead>
+							<tbody>							
+								
+								<tr th:each="rolelist : ${LEAVE_ROLE_LIST}">
+									<td th:text="${rolelist.role.name}"></td>
+									<td th:text="${rolelist.casual_leave}"></td>
+									<td th:text="${rolelist.sick_leave}"></td>
+									<td th:text="${rolelist.paid_leave}"></td>
+									<td th:text="${rolelist.maternity_leave}"></td>
+									<td th:text="${rolelist.paternity_leave}"></td>
+									<td th:text="${rolelist.privileged_leave}"></td>
+									<td th:text="${rolelist.createdDate}"></td>
+									<td th:text="${rolelist.modifiedDate}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

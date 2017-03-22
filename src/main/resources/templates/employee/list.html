@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+<title>Employees</title>
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div class="container">
+
+
+		<div class="row">
+			<div class="col-md-14">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>Employees</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<thead>
+								<tr>
+									<th>CODE</th>
+									<th>NAME</th>
+									<th>ROLE</th>
+									<th>MAILID</th>
+									<th>MOBILE NO</th>
+									<th>CREATED DATE</th>
+									<th>MODIFIED DATE</th>
+
+
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="emp : ${EMPLOYEE_LIST}">
+									<td th:text="${emp.code}"></td>
+									<td th:text="${emp.name}"></td>
+									<td th:text="${emp.role.name}"></td>
+									<td th:text="${emp.emailId}"></td>
+									<td th:text="${emp.mobileNo}"></td>
+									<td th:text="${emp.createdDate}"></td>
+									<td th:text="${emp.modifiedDate}"></td>
+
+									<td><a class='btn btn-danger'  href=""
+										th:href="@{/employees/delete(id=${emp.id})}"> <span
+											class='icon-pencil'></span>Delete
+									</a></td>
+
+
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

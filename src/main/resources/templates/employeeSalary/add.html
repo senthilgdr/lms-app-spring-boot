@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>EmployeeSalary</title>
+
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div id="msg"></div>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-4">
+
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4 ></h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<form id="addEmployeeSalaryFrm" class="form-horizontal" role="form"
+						method="GET" action="../employeesSalary/save">
+
+						<input type="hidden" name="empId" th:value="${EMPLOYEE_LIST.id}" />
+                        <div class="form-group">
+							<label for="basicPay">NAME:</label><input type="text" th:if="@{session.LOGGED_IN_USER !=null}"
+							th:text="${session.LOGGED_IN_USER.name}"
+								class="form-control" name="name" required="required"
+								id="name" autofocus="autofocus" readonly="readonly" />
+						</div>
+
+						<div class="form-group">
+							<label for="basicPay">BASIC PAY:</label><input type="text"
+								class="form-control" name="basicPay" required="required"
+								id="basicPay" autofocus="autofocus" />
+						</div>
+						<div class="form-group">
+							<label for="hra">HRA:</label><input type="text"
+								class="form-control" name="hra" required="required" id="hra" />
+						</div>
+						<div class="form-group">
+							<label for="conveyance">CONVEYANCE:</label><input type="text"
+								class="form-control" name="conveyance" required="required"
+								id="conveyance" />
+						</div>
+						<div class="form-group">
+							<label for="specialAllowance">SPECIAL ALLOWANCE:</label><input
+								type="text" class="form-control" name="specialAllowance"
+								required="required" id="specialAllowance" />
+						</div>
+						<div class="form-group">
+							<label for="medicalInsurance">MEDICAL INSURANCE:</label><input
+								type="text" class="form-control" name="medicalInsurance"
+								required="required" id="medicalInsurance" />
+						</div>
+						<div class="form-group">
+							<label for="providentFund">PROVIDENT FUND:</label><input
+								type="text" class="form-control" name="providentFund"
+								required="required" id="providentFund" />
+						</div>
+						<div class="form-group">
+							<label for="incomeTax">INCOME TAX:</label><input type="text"
+								class="form-control" name="incomeTax" required="required"
+								id="incomeTax" />
+						</div>
+
+						<div class="form-group">
+							<button type="submit" class="btn btn-success"
+								id="addEmployeeSalaryBtn">Submit</button>
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+
+</html>

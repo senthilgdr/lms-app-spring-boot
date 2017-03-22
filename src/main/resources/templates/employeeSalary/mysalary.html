@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>My Salary Details</title>
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div class="container">
+	
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4 th:if="@{session.LOGGED_IN_USER !=null}"
+							th:text="${session.LOGGED_IN_USER.name}">
+							</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="portlet-body">
+				<div class="col-md-4">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<tbody>
+								
+								<tr>
+									<th>BASIC PAY</th>
+									<td th:text="${MY_SALARY_LIST.basicPay}"></td>
+									
+								</tr>
+								<tr>
+									<th>HRA</th>
+									<td th:text="${MY_SALARY_LIST.hra}"></td>
+								</tr>
+								<tr>
+									<th>CONVEYANCE</th>
+									<td th:text="${MY_SALARY_LIST.conveyance}"></td>
+								</tr>
+								<tr>
+									<th>SPECIAL ALLOWANCE</th>
+									<td th:text="${MY_SALARY_LIST.specialAllowance}"></td>
+								</tr>
+								<tr>
+									<th>MEDICAL INSURANCE</th>
+									<td th:text="${MY_SALARY_LIST.medicalInsurance}"></td>
+								</tr>
+								
+
+								<!-- <tr class="success">
+									<th>TOTAL EARNINGS</th>
+									<th th:text="${MY_SALARY_LIST.getTotalEarnings}"></th>
+								</tr> -->
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<tbody>
+								
+								<tr>
+									<th>PROVIDENT FUND</th>
+									<td th:text="${MY_SALARY_LIST.providentFund}"></td>
+								</tr>
+								<tr>
+									<th>INCOME TAX</th>
+									<td th:text="${MY_SALARY_LIST.incomeTax}"></td>
+								</tr>
+
+								<!-- <tr class="success">
+									<th>TOTAL DEDUCTIONS</th>
+									<th th:text="${MY_SALARY_LIST.getTotalDeductions}" ></th>
+								</tr> -->
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+</body>
+</html>
