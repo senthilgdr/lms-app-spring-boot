@@ -32,7 +32,6 @@ public class EmployeeController {
 	@Autowired
 	EmployeeDAO employeeDAO;
 	
-
 	@PostMapping("/login")
 	public String login(@RequestParam("emailId") String emailId, @RequestParam("password") String password,
 			ModelMap modelMap, HttpSession session) {
@@ -56,6 +55,11 @@ public class EmployeeController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/create")
+	public String create(){
+		return "employee/register";
+	}
+	
 	@GetMapping("/register")
 	public String register(@RequestParam("code") String code, @RequestParam("name") String name,
 			@RequestParam("gender") String gender, @RequestParam("role") Long role,

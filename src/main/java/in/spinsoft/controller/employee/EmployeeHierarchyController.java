@@ -22,6 +22,7 @@ public class EmployeeHierarchyController {
 	@Autowired
 	EmployeeHierarchyService employeeHierarchyService;
 
+
 	@GetMapping("/create")
 	public String create() {
 		return "employeeHierarchy/add";
@@ -98,7 +99,7 @@ public class EmployeeHierarchyController {
 
 		try {
 
-			EmployeeHierarchy ld = new EmployeeHierarchyDAO().findById(id);
+			EmployeeHierarchy ld = employeeHierarchyService.findById(id);
 			modelMap.addAttribute("EDIT_EMPLOYEE_HIERARCHY", ld);
 
 			return "employeeHierarchy/edit";
@@ -131,7 +132,7 @@ public class EmployeeHierarchyController {
 			employeeHierarchy.setManager(manager);
 			employeeHierarchyService.update(employeeHierarchy);
 
-			return "redirect:employeesHierarchy/list";
+			return "redirect:../employeesHierarchy/listMyTeam";
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelMap.addAttribute("errorMessage", e.getMessage());
@@ -146,7 +147,7 @@ public class EmployeeHierarchyController {
 		try {
 			employeeHierarchyService.delete(Long.valueOf(id));
 
-			return "redirect:employeesHierarchy/list";
+			return "redirect:/employeesHierarchy/list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelMap.addAttribute("errorMessage", e.getMessage());

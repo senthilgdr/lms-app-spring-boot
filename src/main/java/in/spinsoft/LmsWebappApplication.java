@@ -13,7 +13,7 @@ public class LmsWebappApplication {
 	@Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource)
     {
-		System.out.println("Datasource" + dataSource);
+		System.out.println("Datasources  " + dataSource);
         return new JdbcTemplate(dataSource);
     }	
 	
@@ -21,6 +21,6 @@ public class LmsWebappApplication {
 		SpringApplication.run(LmsWebappApplication.class, args);
 	}
 	
-	
+	   
 	
 }

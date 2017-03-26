@@ -14,6 +14,9 @@ public class LeaveRoleDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private RoleDAO roleDAO;
 
 	public List<LeaveRole> list() {
 
@@ -23,7 +26,7 @@ public class LeaveRoleDAO {
 		List<LeaveRole> roleList = jdbcTemplate.query(sql, new Object[] {}, (rs, rowNo) -> {
 
 			long roleId = rs.getLong("ROLE_ID");
-			Role role = new RoleDAO().findById(roleId);
+			Role role = roleDAO.findById(roleId);
 
 			LeaveRole roleLeave = new LeaveRole();
 			roleLeave.setId(rs.getLong("ID"));
@@ -51,7 +54,7 @@ public class LeaveRoleDAO {
 		LeaveRole list = jdbcTemplate.queryForObject(sql, new Object[] { id }, (rs, rowNo) -> {
 
 			long roleId = rs.getLong("ROLE_ID");
-			Role role = new RoleDAO().findById(roleId);
+			Role role = roleDAO.findById(roleId);
 
 			LeaveRole roleLeave = new LeaveRole();
 			roleLeave.setId(rs.getLong("ID"));

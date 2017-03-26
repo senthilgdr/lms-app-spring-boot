@@ -57,10 +57,10 @@ public class EmployeeHierarchyDAO {
 		employee.setName(rs.getString("EMP_NAME"));
 		emp.setEmployee(employee);
 
-		Employee employee1 = new Employee();
-		employee1.setId(rs.getLong("MGR_ID"));
-		employee1.setName(rs.getString("MANAGER_NAME"));
-		emp.setEmployee(employee1);
+		Employee manager = new Employee();
+		manager.setId(rs.getLong("MGR_ID"));
+		manager.setName(rs.getString("MANAGER_NAME"));
+		emp.setManager(manager);
 
 		return emp;
 	}
@@ -95,7 +95,7 @@ public class EmployeeHierarchyDAO {
 	public EmployeeHierarchy findById(Long id) {
 
 		System.out.println(id);
-		String sql = "SELECT ID,EMP_ID, MGR_ID , " + empMgrNameQuery + " FROM EMPLOYEE_HIERARCHY  WHERE ID=?";
+		String sql = "SELECT e.ID,e.EMP_ID, e.MGR_ID , " + empMgrNameQuery + " FROM EMPLOYEE_HIERARCHY e  WHERE ID=?";
 		System.out.println(sql);
 		EmployeeHierarchy employee = jdbcTemplate.queryForObject(sql, new Object[] { id }, (rs, rowNum) -> {
 

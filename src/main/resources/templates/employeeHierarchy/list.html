@@ -6,8 +6,8 @@
 <title>EmployeeHierarchy</title>
 </head>
 <body>
-		<div th:include="layout/header"></div>
-	<div class="container">		
+	<div th:include="layout/header"></div>
+	<div class="container">
 
 		<div class="row">
 			<div class="col-md-14">
@@ -22,23 +22,24 @@
 
 							<thead>
 								<tr>
-									<th>S.NO</th>
+									<th>S.No</th>
 									<th>EMPLOYEE NAME</th>
 									<th>MANAGER NAME</th>
-																
-									
+
+
 								</tr>
 							</thead>
-							<tbody>								
-															
-								<tr th:each="hierarchy : EMPLOYEE_HIERARCHY_LIST">
+							<tbody>
+
+								<tr th:each="hierarchy,iter : ${EMPLOYEE_HIERARCHY_LIST}">
+									<td th:text="${iter.index+1}"></td>
 									<td th:text="${hierarchy.employee.name}"></td>
 									<td th:text="${hierarchy.manager.name}"></td>
 
-									<td><a class='btn btn-success'  href=""
+									<td><a class='btn btn-success' href=""
 										th:href="@{/employeesHierarchy/edit(id=${hierarchy.id})}"><span
 											class='icon-pencil'></span>Edit</a></td>
-									<td><a class='btn btn-danger'  href=""
+									<td><a class='btn btn-danger' href=""
 										th:href="@{/employeesHierarchy/delete(id=${hierarchy.id})}"><span
 											class='icon-pencil'></span>Delete</a></td>
 
@@ -49,9 +50,10 @@
 					</div>
 				</div>
 				<div class="row">
-					<a class='btn btn-success'  href="" th:href="@{/employeesHierarchy/create}">Add</a>
+					<a class='btn btn-success' href=""
+						th:href="@{/employeesHierarchy/create}">Add</a>
 				</div>
-				
+
 			</div>
 
 		</div>

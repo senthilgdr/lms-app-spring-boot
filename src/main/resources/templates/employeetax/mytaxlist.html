@@ -21,7 +21,7 @@
 
 							<thead>
 								<tr>
-
+									<th>S.No</th>
 									<th>NAME</th>
 									<th>PAN NUMBER</th>
 									<th>HOUSERENT</th>
@@ -61,7 +61,8 @@
 							</thead>
 							<tbody>
 
-								<tr th:each="taxlist : ${MY_TAX_LIST}">
+								<tr th:each="taxlist,iter : ${MY_TAX_LIST}">
+									<td th:text="${iter.index+1}"></td>
 									<td th:text="${taxlist.employee.name}"></td>
 									<td th:text="${taxlist.panNo}"></td>
 									<td th:text="${taxlist.houseRent}"></td>

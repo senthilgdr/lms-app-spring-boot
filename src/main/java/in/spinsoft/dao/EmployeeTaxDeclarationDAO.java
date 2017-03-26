@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,18 +42,24 @@ public class EmployeeTaxDeclarationDAO {
 
 	public TaxDeclaration findByEmpId(Long empId) {
 
-		String sql = "SELECT EMP_ID ,PAN_NUMBER, HOUSE_RENT, HOUSE_OWNER_NAME, MEDICAL_BILLS,EPF_VPF_CONTRIBUTION,"
+		String sql = "SELECT T.EMP_ID,E.NAME, PAN_NUMBER, HOUSE_RENT, HOUSE_OWNER_NAME, MEDICAL_BILLS,EPF_VPF_CONTRIBUTION,"
 				+ "PPF,SENIOR_CITITIZEN,NSC,TAX_SAVING_FD,TAX_SAVING_BONDS,ELSS,LIFE_INSURANCE,PENSION_PLAN,"
 				+ "CENTRAL_GOVT_PENSION_PLAN,HOUSING_LOAN,SUKANYA_SAMRIDDHI_ACCOUNT,STAMP_DUTY_CHARGES,"
 				+ "TUITION_FEES,ADDITIONAL_DEDUCTION,DEDUCTION_RGESS,MEDICAL_INSURANCE_SELF,"
 				+ "MEDICAL_INSURANCE_PARENTS,EDUCATION_LOAN,MEDICAL_TREATMENT,EXPENDITURE_MEDICAL_TREATMENT,DONATION_APPROVED_FUNDS,"
-				+ "PHYSICALLY_DISABLED_ASSESSE FROM TAX_DECLARATION WHERE EMP_ID = ? ";
+				+ "PHYSICALLY_DISABLED_ASSESSE FROM TAX_DECLARATION T, EMPLOYEES E WHERE T.EMP_ID = E.ID AND T.EMP_ID = ? ";
+		System.out.println("Myatx:" + sql);
+		TaxDeclaration tax = null;
+		try {
+			tax = jdbcTemplate.queryForObject(sql, new Object[] { empId }, (rs, rowno) -> {
 
-		TaxDeclaration tax = jdbcTemplate.queryForObject(sql, new Object[] { empId }, (rs, rowno) -> {
+				TaxDeclaration td = convert(rs);
+				return td;
+			});
 
-			TaxDeclaration td = convert(rs);
-			return td;
-		});
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("No record exists");
+		}
 
 		return tax;
 
@@ -60,12 +67,12 @@ public class EmployeeTaxDeclarationDAO {
 
 	public List<TaxDeclaration> findAll() {
 
-		String sql = "SELECT EMP_ID ,PAN_NUMBER, HOUSE_RENT, HOUSE_OWNER_NAME, MEDICAL_BILLS,EPF_VPF_CONTRIBUTION,"
+		String sql = "SELECT T.EMP_ID,E.NAME,PAN_NUMBER, HOUSE_RENT, HOUSE_OWNER_NAME, MEDICAL_BILLS,EPF_VPF_CONTRIBUTION,"
 				+ "PPF,SENIOR_CITITIZEN,NSC,TAX_SAVING_FD,TAX_SAVING_BONDS,ELSS,LIFE_INSURANCE,PENSION_PLAN,"
 				+ "CENTRAL_GOVT_PENSION_PLAN,HOUSING_LOAN,SUKANYA_SAMRIDDHI_ACCOUNT,STAMP_DUTY_CHARGES,"
 				+ "TUITION_FEES,ADDITIONAL_DEDUCTION,DEDUCTION_RGESS,MEDICAL_INSURANCE_SELF,"
 				+ "MEDICAL_INSURANCE_PARENTS,EDUCATION_LOAN,MEDICAL_TREATMENT,EXPENDITURE_MEDICAL_TREATMENT,DONATION_APPROVED_FUNDS,"
-				+ "PHYSICALLY_DISABLED_ASSESSE FROM TAX_DECLARATION";
+				+ "PHYSICALLY_DISABLED_ASSESSE FROM TAX_DECLARATION T, EMPLOYEES E WHERE T.EMP_ID = E.ID";
 
 		List<TaxDeclaration> tax = jdbcTemplate.query(sql, new Object[] {}, (rs, rowno) -> {
 
@@ -82,6 +89,7 @@ public class EmployeeTaxDeclarationDAO {
 
 		Employee emp = new Employee();
 		emp.setId(rs.getLong("EMP_ID"));
+		emp.setName(rs.getString("NAME"));
 		td.setEmployee(emp);
 		td.setPanNo(rs.getString("PAN_NUMBER"));
 

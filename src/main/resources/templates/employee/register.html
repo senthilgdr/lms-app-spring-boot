@@ -24,33 +24,37 @@
 
 						<div class="form-group">
 							<label for="code">CODE:</label><input type="text"
-								class="form-control" name="code" required="required" autofocus="autofocus" id="code"/>
+								class="form-control" name="code" required="required"
+								autofocus="autofocus" id="code" />
 						</div>
 						<div class="form-group">
 							<label for="name">NAME:</label><input type="text"
-								class="form-control" name="name" required="required" id="name"/>
+								class="form-control" name="name" required="required" id="name" />
 						</div>
 
 						<div class="form-group">
-					<label for="gender">GENDER:</label><br>
-				<input type="radio" name="gender"  id="gender" value='M'/>Male
-				 <input type="radio" name="gender"  id="gender" value='F'/>Female
-					</div>
+							<label for="gender">GENDER:</label> <input type="radio"
+								name="gender" id="gender" value='M' />Male <input type="radio"
+								name="gender" id="gender" value='F' />Female
+						</div>
 
-						<input type="hidden" name="role" value="6"/>
+						<input type="hidden" name="role" value="6" />
 						<!-- 10 refers Employee Role -->
 
 						<div class="form-group">
 							<label for="emailId">E-MAILID:</label><input type="email"
-								class="form-control" name="emailId" required="required" id="emailId"/>
+								class="form-control" name="emailId" required="required"
+								id="emailId" />
 						</div>
 						<div class="form-group">
 							<label for="password">PASSWORD:</label><input type="password"
-								class="form-control" name="password" required="required" id="password"/>
+								class="form-control" name="password" required="required"
+								id="password" />
 						</div>
 						<div class="form-group">
 							<label for="mobileNo">MOBILE NO:</label><input type="text"
-								class="form-control" name="mobileNo" required="required" id="mobileNo"/>
+								class="form-control" name="mobileNo" required="required"
+								id="mobileNo" />
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-success" id="addEmployeeBtn">Create
@@ -58,9 +62,7 @@
 						</div>
 						<hr />
 						<div class="form-group">
-							Already have an account? &nbsp;&nbsp; <a
-								href="../index" th:href="@{/index}"
-								class='btn btn-primary'> SIGN IN</a>
+							Already have an account? &nbsp;&nbsp; <a href="index.html" th:href="@{/}" class='btn btn-primary'> SIGN IN</a>
 						</div>
 					</form>
 

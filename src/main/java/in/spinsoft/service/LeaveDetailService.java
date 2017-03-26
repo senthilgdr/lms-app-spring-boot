@@ -17,27 +17,29 @@ public class LeaveDetailService {
 		ldDao.applyLeave(ld);
 	}
 
-	public List<LeaveDetail> list(Long employeeId) {
+	public List<LeaveDetail> list() {
 
-		return ldDao.list(employeeId);
+		return ldDao.list();
 	}
 
-	public List<LeaveDetail> findAllPendingLeaves() {
+	public List<LeaveDetail> findMyLeaves(Long employeeId) {
 
-		return ldDao.findAllPendingLeaves();
+		return ldDao.findMyLeaves(employeeId);
 	}
 
 	public void update(LeaveDetail ld) {
 		ldDao.update(ld);
 	}
-
+	public void updateLeaveDetail(LeaveDetail ld) {
+		ldDao.updateLeaveDetail(ld);
+	}
 	public LeaveDetail findById(Long leaveId) {
 
 		return ldDao.findById(leaveId);
 	}
 
-	public List<LeaveDetail> findMyTeamPendingLeaves(long empId) {
-		return ldDao.findMyTeamPendingLeaves(empId);
+	public List<LeaveDetail> findMyTeam(long empId) {
+		return ldDao.findMyTeam(empId);
 	}
 
 }

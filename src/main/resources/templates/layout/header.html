@@ -5,10 +5,16 @@
 	href="../assets/css/bootstrap_custom_nav_bar.css" />
 <link rel="stylesheet"
 	href="../assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+<link rel="stylesheet"
+	href="../assets/css/mdb.min.css" th:href="@{/assets/css/mdb.min.css}"/>
 
 <script src="../assets/js/jquery.min.js" th:href="@{/assets/js/jquery.min.js}"></script>
 <script
 	src="../assets/js/bootstrap.min.js" th:href="@{/assets/js/bootstrap.min.js}"></script>
+	<script
+	src="../assets/js/mdb.min.js" th:href="@{/assets/js/mdb.min.js}"></script>
+	<script
+	src="../assets/js/tether.min.js" th:href="@{/assets/js/tether.min.js}"></script>
 
 <nav class="navbar-default">
 	<div class="container">
@@ -24,7 +30,8 @@
 				data-toggle="dropdown" href="#">Leave <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="../leavedetails/create" th:href="@{/leavedetails/create}">ApplyLeave</a></li>
-					<li><a href="../leavedetails/list" th:href="@{/leavedetails/list}">My
+					<li><a
+						href="../leavedetails/myLeaves" th:href="@{/leavedetails/myLeaves}">My
 							Leaves </a></li>
 					<li><a href="../leaveroles/myLeaveRole" th:href="@{/leaveroles/myLeaveRole}">My
 							Leave Eligibility </a></li>
@@ -34,7 +41,7 @@
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">MyTeam <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="../leavedetails/teamPendingLeaves" th:href="@{/leavedetails/teamPendingLeaves}">MyTeam
+					<li><a href="../leavedetails/teamLeaves" th:href="@{/leavedetails/teamLeaves}">MyTeam
 							LeaveDetails </a></li>
 					<li><a
 						href="../employeesHierarchy/list" th:href="@{/employeesHierarchy/listMyTeam}">MyTeam
@@ -45,8 +52,7 @@
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">Admin <span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a
-						href="../leavedetails/selectPendingLeave" th:href="@{/leavedetails/selectPendingLeave}">All
+					<li><a href="../leavedetails/list" th:href="@{/leavedetails/list}">All
 							Leaves </a></li>
 					<li><a
 						href="../employees/list" th:href="@{/employees/list}" >All

@@ -7,7 +7,7 @@
 <body>
 	<div th:include="layout/header"></div>
 	<div class="container">
-		
+
 		<div class="row">
 			<div class="col-md-14">
 				<div class="portlet-title">
@@ -21,37 +21,37 @@
 
 							<thead>
 								<tr>
+									<th>Sno</th>
 									<th>NAME</th>
-									<th>EMP ID</th>
 									<th>PAN NUMBER</th>
 									<th>HOUSERENT</th>
 									<th>HOUSE OWNER NAME</th>
 									<th>MEDICAL BILLS</th>
-									
+
 									<th>EPF VPF CONTRIBUTION</th>
-									<th>PPF</th>									
-									<th>SCSS</th>								
+									<th>PPF</th>
+									<th>SCSS</th>
 									<th>N.S.C</th>
 									<th>TAX SAVING FD</th>
-									
+
 									<th>TAX SAVING BONDS</th>
 									<th>E.L.S.S</th>
-									<th>LIFE INSURANCE</th>									
-									<th>PENSION PLAN</th>									
+									<th>LIFE INSURANCE</th>
+									<th>PENSION PLAN</th>
 									<th>CENTRAL GOVT.PLAN</th>
-									
+
 									<th>HOUSING LOAN</th>
 									<th>SUKANYA ACCOUNT</th>
 									<th>STAMP CHARGES:</th>
 									<th>TUITION FEES</th>
 									<th>ADDITIONAL DEDUCTION</th>
-									
+
 									<th>DEDUCTION RGESS</th>
 									<th>MEDICAL INSURANCE SELF</th>
 									<th>MEDICAL INSURANCE PARENT</th>
 									<th>EDUCATION LOAN</th>
 									<th>MEDICAL TREATMENT</th>
-									
+
 									<th>EXPENDITURE MEDICAL TREATMENT</th>
 									<th>DONATION APPROVED FUNDS</th>
 									<th>PHYSICALLY DISABLED</th>
@@ -60,9 +60,10 @@
 								</tr>
 							</thead>
 							<tbody>
-							
-								<tr th:each="taxlist : ${EMPLOYEE_TAX_LIST}">
-									<td th:text="${taxlist.employee.name}"></td>
+
+								<tr th:each="taxlist,iter : ${EMPLOYEE_TAX_LIST}">
+									<td th:text="${iter.index+1}"></td>
+									<td th:text="${taxlist.employee.name}"></td>	
 									<td th:text="${taxlist.panNo}"></td>
 									<td th:text="${taxlist.houseRent}"></td>
 									<td th:text="${taxlist.houseOwnerName}"></td>
@@ -95,9 +96,14 @@
 									<td th:text="${taxlist.expenditureMedicalTreatment}"></td>
 									<td th:text="${taxlist.donationApprovedFunds}"></td>
 									<td th:text="${taxlist.physicallyDisabled}"></td>
-</tr>
+								
+								</tr>
+								
 							</tbody>
 						</table>
+						<div th:with="taxlist =  ${EMPLOYEE_TAX_LIST}">
+								<b>No of records : <span th:text="${taxlist.size()}">  </span> </b> 
+						</div>
 
 					</div>
 				</div>

@@ -56,8 +56,10 @@ public class EmployeeTaxDeclarationController {
 		try {
 			TaxDeclaration td = new TaxDeclaration();
 
+			
+			Employee sessionEmp = (Employee) session.getAttribute("LOGGED_IN_USER");
 			Employee emp = new Employee();
-			emp.setId(1L);
+			emp.setId(sessionEmp.getId());
 
 			td.setEmployee(emp);
 			td.setPanNo(panNo);
@@ -91,7 +93,7 @@ public class EmployeeTaxDeclarationController {
 			System.out.println("Add:" + td);
 
 			employeeTaxService.register(td);
-			System.out.println("Insertd" + td);
+			System.out.println("ADDED" + td);
 			return "redirect:list";
 		} catch (Exception e) {
 			e.printStackTrace();

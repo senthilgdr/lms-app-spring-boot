@@ -20,6 +20,7 @@ public class EmployeeDAO {
 
 	public Employee findById(Long id) {
 
+		System.out.println("JdbcTemplate:" + jdbcTemplate);
 		String sql = "SELECT e.ID, e.CODE, NAME, ROLE_ID , ROLE_CODE, ROLE_NAME, EMAIL_ID,e.GENDER, MOBILE_NO, e.ACTIVE, e.CREATED_DATE, e.MODIFIED_DATE FROM EMPLOYEES e, ROLE r WHERE e.ROLE_ID = r.ID AND e.ID = ?";
 
 		Employee employee = jdbcTemplate.queryForObject(sql, new Object[] { id }, (rs, rowNum) -> {

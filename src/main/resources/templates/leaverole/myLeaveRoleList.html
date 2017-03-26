@@ -5,14 +5,15 @@
 <title>My LeaveRole</title>
 </head>
 <body>
-		<div th:include="layout/header"></div>
+	<div th:include="layout/header"></div>
 	<div class="container">
 
 		<div class="row">
 			<div class="col-md-14">
 				<div class="portlet-title">
 					<div class="page-header">
-						<h4 th:if="@{session.LOGGED_IN_USER !=null}" th:text="${session.LOGGED_IN_USER.name}"> LeaveRole</h4>
+						<h4 th:if="@{session.LOGGED_IN_USER !=null}"
+							th:text="${session.LOGGED_IN_USER.name}">LeaveRole</h4>
 					</div>
 				</div>
 				<div class="portlet-body">
@@ -21,7 +22,7 @@
 
 							<thead>
 								<tr>
-									<th>S.NO</th>
+									<th>S.No</th>
 									<th>ROLE</th>
 									<th>CASUAL LEAVE</th>
 									<th>SICK LEAVE</th>
@@ -31,13 +32,14 @@
 									<th>PRIVILEGED LEAVE</th>
 									<th>CREATED DATE</th>
 									<th>MODIFIED DATE</th>
-									
-									
+
+
 								</tr>
 							</thead>
 							<tbody>
-								
-								<tr th:each="rolelist : ${LEAVE_ROLE}">
+
+								<tr th:each="rolelist,iter : ${LEAVE_ROLE_LIST}">
+									<td th:text="${iter.index+1}"></td>
 									<td th:text="${rolelist.role.name}"></td>
 									<td th:text="${rolelist.casual_leave}"></td>
 									<td th:text="${rolelist.sick_leave}"></td>
@@ -53,7 +55,7 @@
 
 					</div>
 				</div>
-				
+
 			</div>
 
 		</div>

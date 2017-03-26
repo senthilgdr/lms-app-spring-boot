@@ -21,7 +21,7 @@
 
 							<thead>
 								<tr>
-									<th>S.NO</th>
+									<th>S.No</th>
 									<th>HOLIDAY_DATE</th>
 									<th>REASON</th>
 
@@ -30,7 +30,9 @@
 							</thead>
 							<tbody>
 
-								<tr th:each="holiday : ${HOLIDAY_LIST}">
+									
+								<tr th:each="holiday,iter  : ${HOLIDAY_LIST}">
+								<td th:text="${iter.index+1}"></td>
 									<td th:text="${holiday.holidayDate}"></td>
 									<td th:text="${holiday.status}"></td>
 

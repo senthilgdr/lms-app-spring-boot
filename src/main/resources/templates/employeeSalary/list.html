@@ -7,7 +7,7 @@
 <body>
 	<div th:include="layout/header"></div>
 	<div class="container">
-		
+
 		<div class="row">
 			<div class="col-md-14">
 				<div class="portlet-title">
@@ -21,6 +21,7 @@
 
 							<thead>
 								<tr>
+									<th>S.No</th>
 									<th>EMPLOYEE NAME</th>
 									<th>BASIC PAY</th>
 									<th>HRA</th>
@@ -29,14 +30,15 @@
 									<th>MEDICAL INSURANCE</th>
 									<th>PROVIDENT FUND</th>
 									<th>INCOME TAX</th>
-																
-									
+
+
 								</tr>
 							</thead>
-							<tbody>	  			
-								
-									
-								<tr th:each="salarylist : ${EMPLOYEE_SALARY_LIST}">
+							<tbody>
+
+
+								<tr th:each="salarylist,iter : ${EMPLOYEE_SALARY_LIST}">
+									<td th:text="${iter.index+1}"></td>
 									<td th:text="${salarylist.employee.name}"></td>
 									<td th:text="${salarylist.basicPay}"></td>
 									<td th:text="${salarylist.hra}"></td>
@@ -45,14 +47,14 @@
 									<td th:text="${salarylist.medicalInsurance}"></td>
 									<td th:text="${salarylist.providentFund}"></td>
 									<td th:text="${salarylist.incomeTax}"></td>
-									
+
 								</tr>
 							</tbody>
 						</table>
 
 					</div>
 				</div>
-								
+
 			</div>
 
 		</div>

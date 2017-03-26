@@ -24,11 +24,20 @@ public class EmployeeSalaryDetails {
 
 	private Long incomeTax;
 
+	private Long totalEarnings;
+
 	public Long getTotalEarnings() {
-		return basicPay + hra + conveyance + specialAllowance + medicalInsurance;
+
+		this.totalEarnings = basicPay + hra + conveyance + specialAllowance + medicalInsurance;
+
+		return totalEarnings;
 	}
 
+	private Long totalDeductions;
+
 	public Long getTotalDeductions() {
-		return providentFund + incomeTax;
+		this.totalDeductions = providentFund + incomeTax;
+
+		return totalDeductions;
 	}
 }

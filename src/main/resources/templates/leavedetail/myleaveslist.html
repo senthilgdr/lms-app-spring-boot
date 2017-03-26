@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Leave Details</title>
+</head>
+<body>
+	<div th:include="layout/header"></div>
+	<div class="container">
+
+
+		<div class="row">
+			<div class="col-md-14">
+				<div class="portlet-title">
+					<div class="page-header">
+						<h4>My Leave Details</h4>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+
+							<thead>
+								<tr>
+									<th>S.No</th>
+									<th>LeaveType</th>
+									<th>FromDate</th>
+									<th>ToDate</th>
+									<th>NoOfDays</th>
+									<th>Status</th>
+									<th>AppliedDate</th>
+									<th>ModifiedBy</th>
+									<th>ModifiedDate</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="leave,iter  : ${MY_LEAVE_DETAILS_LIST}">
+									<td th:text="${iter.index+1}"></td>
+									<td th:text="${leave.leaveType.type}"></td>
+									<td th:text="${leave.fromDate}"></td>
+									<td th:text="${leave.toDate}"></td>
+									<td th:text="${leave.noOfDays}"></td>
+									<td th:text="${leave.status.status}"></td>
+									<td th:text="${leave.appliedDate}"></td>
+									<td th:text="${leave.modifiedBy.name}"></td>
+									<td th:text="${leave.modifiedDate}"></td>
+
+									<td th:text="${leave.status.status} == 'APPLIED'"></td>
+									<td th:if="${leave.status.status} == 'APPLIED'"><a
+										class='btn btn-success' href=""
+										th:href="@{../leavedetails/updateMyTeam(id=${leave.id},status=4)}"><span
+											class='icon-pencil'></span>Cancel Leave </a></td>
+									<td><a class='btn btn-danger' href=""
+										th:href="@{../leavedetails/edit(id=${leave.id})}"><span
+											class='icon-pencil'></span>Edit</a></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

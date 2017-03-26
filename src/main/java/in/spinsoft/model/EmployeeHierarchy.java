@@ -3,7 +3,6 @@ package in.spinsoft.model;
 import lombok.Data;
 
 @Data
-
 public class EmployeeHierarchy {
 
 	private Integer id;

@@ -24,6 +24,7 @@
 
 							<thead>
 								<tr>
+									<th>S.No</th>
 									<th>CODE</th>
 									<th>NAME</th>
 									<th>ROLE</th>
@@ -37,7 +38,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="emp : ${EMPLOYEE_LIST}">
+								<tr th:each="emp,iter : ${EMPLOYEE_LIST}">
+									<td th:text="${iter.index+1}"></td>
 									<td th:text="${emp.code}"></td>
 									<td th:text="${emp.name}"></td>
 									<td th:text="${emp.role.name}"></td>
@@ -46,7 +48,7 @@
 									<td th:text="${emp.createdDate}"></td>
 									<td th:text="${emp.modifiedDate}"></td>
 
-									<td><a class='btn btn-danger'  href=""
+									<td><a class='btn btn-danger' href=""
 										th:href="@{/employees/delete(id=${emp.id})}"> <span
 											class='icon-pencil'></span>Delete
 									</a></td>

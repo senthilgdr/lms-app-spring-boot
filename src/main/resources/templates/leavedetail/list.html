@@ -8,7 +8,6 @@
 	<div th:include="layout/header"></div>
 	<div class="container">
 
-
 		<div class="row">
 			<div class="col-md-14">
 				<div class="portlet-title">
@@ -22,7 +21,8 @@
 
 							<thead>
 								<tr>
-									
+									<th>S.No</th>
+									<th>Employee</th>
 									<th>LeaveType</th>
 									<th>FromDate</th>
 									<th>ToDate</th>
@@ -34,30 +34,31 @@
 								</tr>
 							</thead>
 							<tbody>
+								<tr th:each="leavelist,iter : ${LEAVE_DETAILS_LIST}">
+									<td th:text="${iter.index+1}"></td>
+									<td th:text="${leavelist.employee.name}"></td>
+									<td th:text="${leavelist.leaveType.type}"></td>
+									<td th:text="${leavelist.fromDate}"></td>
+									<td th:text="${leavelist.toDate}"></td>
+									<td th:text="${leavelist.noOfDays}"></td>
+									<td th:text="${leavelist.status.status}"></td>
+									<td th:text="${leavelist.appliedDate}"></td>
+									<td th:text="${leavelist.modifiedBy.name}"></td>
+									<td th:text="${leavelist.modifiedDate}"></td>
 
-								<tr th:each="leave : ${LEAVE_DETAILS_LIST}">
-									<td th:text="${leave.leavetype.type}"></td>
-									<td th:text="${leave.fromDate}"></td>
-									<td th:text="${leave.toDate}"></td>
-									<td th:text="${leave.noOfDays}"></td>
-									<td th:text="${leave.status.status}"></td>
-									<td th:text="${leave.appliedDate}"></td>
-									<td th:text="${leave.modifiedBy.name}"></td>
-									<td th:text="${leave.modifiedDate}"></td>
 
-
-									<td th:if="${leave.status.equals('APPLIED') " >
-									<a
+									<td th:if="${leavelist.status.status} == 'APPLIED'"><a
 										class='btn btn-success' href=""
-										th:href="@{UpdateLeaveDetail(id=${leave.id})}&status=4"><span
-											class='icon-pencil'></span>Cancel Leave
-										</a>
-									</td>
-									<td><a class='btn btn-danger' href=""
-										th:href="@{EditLeaveDetail(id=${leave.id})}"><span
-											class='icon-pencil'></span>Edit</a></td>
+										th:href="@{../leavedetails/update(id=${leavelist.id},status=2)}"><span
+											class='icon-pencil'></span>Approve Leave</a></td>
+
+									<td><a class='btn btn-success' href=""
+										th:href="@{../leavedetails/update(id=${leavelist.id},status=3)}"><span
+											class='icon-pencil'></span>Reject Leave</a></td>
+
 
 								</tr>
+
 							</tbody>
 						</table>
 

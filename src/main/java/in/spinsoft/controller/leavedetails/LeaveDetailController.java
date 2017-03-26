@@ -25,7 +25,6 @@ import in.spinsoft.service.LeaveDetailService;
 import in.spinsoft.service.LeaveStatusService;
 import in.spinsoft.service.LeaveTypeService;
 
-
 @Controller
 @RequestMapping("leavedetails")
 public class LeaveDetailController {
@@ -84,7 +83,7 @@ public class LeaveDetailController {
 			ld.setStatus(findById);
 
 			System.out.println("Add Leave method:" + ld);
-			
+
 			leaveDetailService.save(ld);
 
 			return "redirect:list";
@@ -96,13 +95,32 @@ public class LeaveDetailController {
 
 	}
 
+	@GetMapping("/myLeaves")
+	public String myLeaves(ModelMap modelMap, HttpSession session) throws Exception {
+
+		try {
+			Employee employee = (Employee) session.getAttribute("LOGGED_IN_USER");
+			System.out.println("Leave Detail Listed");
+			List<LeaveDetail> list = leaveDetailService.findMyLeaves(employee.getId());
+			System.out.println(list);
+			modelMap.addAttribute("MY_LEAVE_DETAILS_LIST", list);
+
+			return "leavedetail/myleaveslist";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.addAttribute("errorMessage", e.getMessage());
+			return "/home";
+		}
+	}
+
 	@GetMapping("/list")
 	public String list(ModelMap modelMap, HttpSession session) throws Exception {
 
 		try {
 			Employee employee = (Employee) session.getAttribute("LOGGED_IN_USER");
 			System.out.println("Leave Detail Listed");
-			List<LeaveDetail> list = leaveDetailService.list(employee.getId());
+			List<LeaveDetail> list = leaveDetailService.list();
 			System.out.println(list);
 			modelMap.addAttribute("LEAVE_DETAILS_LIST", list);
 
@@ -115,36 +133,17 @@ public class LeaveDetailController {
 		}
 	}
 
-	@GetMapping("/selectPendingLeave")
-	public String selectPendingLeave(ModelMap modelMap, HttpSession session) throws Exception {
-
-		try {
-			Employee employee = (Employee) session.getAttribute("LOGGED_IN_USER");
-			System.out.println("Leave Detail Listed");
-			List<LeaveDetail> list = leaveDetailService.findAllPendingLeaves();
-			System.out.println(list);
-			modelMap.addAttribute("PENDING_LEAVE_DETAILS_LIST", list);
-
-			return "leavedetail/pendingleaveslist";
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			modelMap.addAttribute("errorMessage", e.getMessage());
-			return "/home";
-		}
-	}
-
-	@GetMapping("/teamPendingLeaves")
+	@GetMapping("/teamLeaves")
 	public String teamPendingLeaves(ModelMap modelMap, HttpSession session) throws Exception {
 
 		try {
 			Employee employee = (Employee) session.getAttribute("LOGGED_IN_USER");
 			System.out.println("Leave Detail Listed");
-			List<LeaveDetail> list = leaveDetailService.findMyTeamPendingLeaves(employee.getId());
+			List<LeaveDetail> list = leaveDetailService.findMyTeam(employee.getId());
 			System.out.println(list);
-			modelMap.addAttribute("PENDING_LEAVE_DETAILS_LIST", list);
+			modelMap.addAttribute("LEAVE_DETAILS_LIST", list);
 
-			return "leavedetail/pendingleaveslist";
+			return "leavedetail/list";
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -153,50 +152,23 @@ public class LeaveDetailController {
 		}
 	}
 
-	/*
-	 * @GetMapping("/ApproveLeaveDetail") public String
-	 * updateStatus(@RequestParam("id") String id, @RequestParam("status")
-	 * String status, ModelMap modelMap, HttpServletRequest request, HttpSession
-	 * session) throws Exception {
-	 * 
-	 * try {
-	 * 
-	 * 
-	 * LeaveDetail ld = leaveDetailService.findById(Long.valueOf(id));
-	 * 
-	 * ld.setStatus(leaveStatusService.findById(Long.valueOf(status))); //
-	 * ld.setModifiedBy(employeeService.findById(Long.valueOf(modifiedBy)));
-	 * 
-	 * System.out.println(ld);
-	 * 
-	 * leaveDetailService.update(ld);
-	 * 
-	 * return "redirect:/SelectPendingLeaves"; } catch (Exception e) {
-	 * e.printStackTrace(); modelMap.addAttribute("errorMessage",
-	 * e.getMessage()); return "leave_details/pendingleaveslist"; } }
-	 */
+	
 
 	@GetMapping("/update")
 	public String update(@RequestParam("id") String id, @RequestParam("status") String status, ModelMap modelMap,
 			HttpServletRequest request, HttpSession session) throws Exception {
-
-		String previousPageUrl = request.getHeader("Referer");
-		String previousPage = previousPageUrl.substring(previousPageUrl.lastIndexOf("/") + 1, previousPageUrl.length());
-
-		System.out.println("Previous Page:" + previousPage);
 
 		try {
 
 			LeaveDetail ld = leaveDetailService.findById(Long.valueOf(id));
 
 			ld.setStatus(leaveStatusService.findById(Long.valueOf(status)));
-			// ld.setModifiedBy(employeeService.findById(Long.valueOf(modifiedBy)));
-
+			
 			System.out.println(ld);
 
 			leaveDetailService.update(ld);
 
-			return "redirect:/" + previousPage;
+			return "redirect:../leavedetails/list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			modelMap.addAttribute("errorMessage", e.getMessage());
@@ -209,7 +181,7 @@ public class LeaveDetailController {
 
 		try {
 
-			LeaveDetail ld = new LeaveDetailDAO().findById(id);
+			LeaveDetail ld = leaveDetailService.findById(id);
 			modelMap.addAttribute("EDIT_LEAVE_DETAIL", ld);
 
 			return "leavedetail/edit";
@@ -248,7 +220,7 @@ public class LeaveDetailController {
 
 			System.out.println("Update Leave method:" + ld);
 
-			new LeaveDetailDAO().updateLeaveDetail(ld);
+			leaveDetailService.updateLeaveDetail(ld);
 
 			return "redirect:leavedetails/list";
 		} catch (Exception e) {
@@ -257,6 +229,28 @@ public class LeaveDetailController {
 			return "edit";
 		}
 
+	}
+	
+	@GetMapping("/updateMyTeam")
+	public String updateMyTeam(@RequestParam("id") String id, @RequestParam("status") String status, ModelMap modelMap,
+			HttpServletRequest request, HttpSession session) throws Exception {
+
+		try {
+
+			LeaveDetail ld = leaveDetailService.findById(Long.valueOf(id));
+
+			ld.setStatus(leaveStatusService.findById(Long.valueOf(status)));
+			
+			System.out.println(ld);
+
+			leaveDetailService.update(ld);
+
+			return "redirect:../leavedetails/myleaveslist";
+		} catch (Exception e) {
+			e.printStackTrace();
+			modelMap.addAttribute("errorMessage", e.getMessage());
+			return "edit";
+		}
 	}
 
 }
